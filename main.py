@@ -56,7 +56,7 @@ with e:
 with f:
     st.metric("**Yaron**",value = '', delta=kpi_df.loc[kpi_df['Who'] == "Yaron", "Amount"].iloc[0])
 
-with st.expander("Info"):
+with st.expander("View Summary Info"):
     st.markdown("**Amiram**")
     amiram_df = trans_res_df[trans_res_df['Who'] == "Amiram"]
     amiram_df = amiram_df[['To', 'Amount']]
@@ -93,6 +93,12 @@ with st.expander("Info"):
     yaron_df = yaron_df.set_index('To')
     st.table(yaron_df)
     
+st.write('')
+with st.expander("View all expenses"):
+    for exp in df.index:
+        st.write(f"**{df['Payer'][exp]}** paid :red[**{df['Amount'][exp]}**] for :blue[{df['Desc'][exp]}] on {df['Date'][exp]}. Paid for {df['Who'][exp]}")
+
+st.write('')
 
 # Lists for display
 payers = ["","Amiram","Ran","Roi","Tom","Tzur","Yaron"]
